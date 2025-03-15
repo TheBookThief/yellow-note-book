@@ -2,7 +2,7 @@ from fourier import remove_band
 import librosa
 import soundfile as sf
 
-def encode_dabros(audio, sr, bits, golden=[1000,2000], silver=[2000,4000], bitlen=0.5):
+def encode_dabros(audio, sr, bits, golden=[1000,2000], silver=[2000,4000], bitlen=0.2):
     audio_length = len(audio) / sr
     if audio_length < 2 * len(bits) * bitlen:
         raise Exception("Data is too long.")
@@ -15,8 +15,8 @@ def encode_dabros(audio, sr, bits, golden=[1000,2000], silver=[2000,4000], bitle
     return audio
 
 # Example usage
-input_file = 'C:/Users/SURF Student/Hackaton/DABROS/DABROS/audio/violin.wav'  # Input WAV file
-output_file = 'C:/Users/SURF Student/Hackaton/DABROS/DABROS/audio/encoded_song_filtered.wav'  # Output WAV file
+input_file = 'C:/Users/SURF Student/Hackaton/DABROS/DABROS/audio/champion.wav'  # Input WAV file
+output_file = 'C:/Users/SURF Student/Hackaton/DABROS/DABROS/audio/encoded_song_filtered_champion.wav'  # Output WAV file
 y, sr = librosa.load(input_file, sr=None) 
 lowcut = 1000  # Lower bound of the frequency band (in Hz)
 highcut = 2000  # Upper bound of the frequency band (in Hz)
