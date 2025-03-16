@@ -44,8 +44,11 @@ def find_coefficients(polynom):
     result = [coefficients.get(exp, 0) for exp in range(max_exp, -1, -1)]
     return result
 
-def polynomial_to_binary(coefficients, bits=8):
+def polynomial_to_binary(coefficients, bits=5):
     binary_sequence = []
+
+    length_binary = format(len(coefficients), f'0{bits}b')
+    binary_sequence.extend([int(bit) for bit in length_binary])
     
     for coeff in coefficients:
         binary_coeff = format(coeff, f'0{bits}b')
@@ -74,7 +77,7 @@ def remove_band(audio, sr, lowcut, highcut, start_time, end_time):
     audio[start_idx:end_idx] = filtered_portion_y
     return audio
 
-def encode_dabros(audio, sr, bits, golden=[1000,2000], silver=[2000,4000], bitlen=2):
+def encode_dabros(audio, sr, bits, golden=[1000,2000], silver=[2000,4000], bitlen=1):
     audio_length = len(audio) / sr
     if audio_length < 2 * len(bits) * bitlen:
         raise Exception("Data is too long.")
@@ -95,10 +98,10 @@ def main():
     pol = sys.argv[1]
     original_audio_path = sys.argv[2]
     
-    #print(f"Polinomial: {pol}")
-    #print(f"Audio Path: {original_audio_path}")
-    #print(f"Coefficients: {find_coefficients(pol)}")
-    #print(f"Binary: {polynomial_to_binary(find_coefficients(pol), bits=8)}")
+    # print(f"Polinomial: {pol}")
+    # print(f"Audio Path: {original_audio_path}")
+    # print(f"Coefficients: {find_coefficients(pol)}")
+    # print(f"Binary: {polynomial_to_binary(find_coefficients(pol), bits=5)}")
     
     y, sr = librosa.load(original_audio_path, sr=None)
 
@@ -113,17 +116,15 @@ def main():
     # output_path = original_audio_path.replace(".wav", "_encoded.wav")
     # output_path = "C:\\Users\\Maria Drencheva\\Desktop\\FMI\\Competitive\\Hackaton 25\\yellow-note-book\\yellow-notebook\\public\\audio\\audio_encoded.wav"
     
-    bits = polynomial_to_binary(find_coefficients(pol), bits=8)
+    bits = polynomial_to_binary(find_coefficients(pol), bits=5)
     
     processed_audio = encode_dabros(y, sr, bits)
     
     sf.write(output_path, processed_audio, sr)
-    #print(f"Processed file saved as {output_path}")
+    # print(f"Processed file saved as {output_path}")
 
     generate_spectrogram_2(output_path, "./public/spect/" + name + ".png")
-
-    print('ok')
-
+    print("OK")
 
 if __name__ == "__main__":
     main()

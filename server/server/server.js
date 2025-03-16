@@ -28,8 +28,6 @@ app.post('/api/encode', upload.single('file'), (req, res) => {
 
     let filename = req.file.path
 
-    console.log(filename.replace('\\', '/'))
-
     const args = [  './python/compile.py', 
                     req.body.polynomial,
                     filename
@@ -41,7 +39,7 @@ app.post('/api/encode', upload.single('file'), (req, res) => {
     ended = false;
     pythonProcess.stdout.on('data', (data) => {
         console.log(`stdout: ${data}`);
-        if (data.toString().startsWith('ok')) {
+        if (data.toString().startsWith('OK')) {
             res.json({ name: req.file.filename.split('.')[0], success: true });
             ended = true
             res.end();
@@ -71,22 +69,36 @@ app.post('/api/decode', upload.single('file'), (req, res) => {
 
     let filename = req.file.path
 
-    const args = [  './python/compile.py', 
-                    './uploads/' + filename, 
-                    req.body.polynomial
+    const args = [  './python/decompile.py', 
+                    filename
                 ];
 
     // Spawn the Python script with arguments
-    const pythonProcess = spawn('python', args);  // Use 'python3' on some systems
-
+    const pythonProcess = spawn('python', args);
     // Capture the output from the Python script
+    ended = false;
     pythonProcess.stdout.on('data', (data) => {
         console.log(`stdout: ${data}`);
-        res.json({ message: 'File uploaded successfully' });
+        if (data.toString().startsWith('OK:')) {
+            res.json({ name: req.file.filename.split('.')[0], result: data.toString().substr(4), success: true });
+            ended = true
+            res.end();
+        } else {
+            res.json({ success: false });
+            ended = true
+            res.end();
+        }
     });
 
-    console.log(req.file.path)
-    console.log(req.body.polynomial)
+    pythonProcess.stderr.on('data', (data) => {
+        console.log(`stderr: ${data}`)
+        if (!ended){
+            ended = true
+            res.json({ success: false });
+            res.end();
+        }
+        //console.error(`stderr: ${data}`);
+    });
 });
 
 app.listen(port, () => {

@@ -74,6 +74,10 @@
           <h4>Spectogram:</h4><br/>
           <img id='en-spectorgram'></img>
       </div>
+
+      <br/>
+
+      <a onclick="showDecode()">Decode Instead</a>
     </div>
       
       <div id='decode' class='code-window' align='center'>
@@ -82,13 +86,25 @@
   
         <br/><br/><br/><br/>
   
+        <div id="decode-submit">
         <form id="upload-form-decode" enctype="multipart/form-data">
           <div class='code-step' align='center'>
             <h3>Upload File (.wav)</h3><br/>
-            <input align='center' type="file" id="fileInputDecode" required /><br/>
-            <input type='submit' value="Submit" />
+          <div class="file-upload-container">
+            <input type="file" id="fileInput-decode" class="file-input" />
+            <label for="fileInput-decode" class="custom-file-upload">
+              <i class="fas fa-upload"></i> Upload File
+            </label>
+            <span id="file-name-decode" class="file-name">No file selected</span>
+          </div>
+          <script>document.getElementById('fileInput-decode').addEventListener('change', function(e) {
+            const fileName = e.target.files.length > 0 ? e.target.files[0].name : 'No file selected';
+            document.getElementById('file-name-decode').textContent = fileName;
+          });</script> <br/>
+          <input class="submit-custom" type='submit' value="Submit" />
           </div>
         </form>
+        </div>
   
         <script src='js/decode.js'></script>
   
@@ -96,10 +112,14 @@
   
         <div id='decode-output' class='code-step' align='center'>
             <h3>Decoded Output Polynomial</h3>
-            <label>?.</label><br/><br/>
+            <label id="result-decoded">?.</label><br/><br/>
             <h4>Spectogram:</h4>
-            <img id='en-spectorgram'></img>
+            <img id='de-spectorgram'></img>
         </div>
+
+        <br/>
+
+      <a onclick="showEncode()">Encode Instead</a>
     </div>
   </body>
 </html>

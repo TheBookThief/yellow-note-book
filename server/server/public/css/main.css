@@ -194,10 +194,20 @@
 
   a {
     color: #ffcd00;
+    cursor: pointer;
+    text-decoration: underline;
   }
 
 #en-spectorgram{
     max-height: 300px;
+}
+
+#de-spectorgram{
+    max-height: 300px;
+}
+
+#decode-output {
+    display: none;
 }
 
   .submit-custom {
