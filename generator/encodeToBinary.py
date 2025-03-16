@@ -37,8 +37,11 @@ def find_coefficients(polynom):
     result = [coefficients.get(exp, 0) for exp in range(max_exp, -1, -1)]
     return result
 
-def polynomial_to_binary(coefficients, bits=8):
+def polynomial_to_binary(coefficients, bits=5):
     binary_sequence = []
+
+    length_binary = format(len(coefficients), f'0{bits}b')
+    binary_sequence.extend([int(bit) for bit in length_binary])
     
     for coeff in coefficients:
         binary_coeff = format(coeff, f'0{bits}b')
@@ -48,5 +51,5 @@ def polynomial_to_binary(coefficients, bits=8):
 
 input_polynom = "5x^5 + 3x^7 + x + 0"
 coefficients = find_coefficients(input_polynom)
-binary_sequence = polynomial_to_binary(coefficients, bits=8)
+binary_sequence = polynomial_to_binary(coefficients)
 print(binary_sequence)
