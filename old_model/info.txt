@@ -1,0 +1,1 @@
+LSTM which uses the timidity library to learn poly->sound
