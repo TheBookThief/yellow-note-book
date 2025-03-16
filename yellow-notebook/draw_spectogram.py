@@ -38,7 +38,7 @@ if __name__ == "__main__":
         print("Spectogram generated ----")
 
 
-def generate_spectrogram_2(file_path, save_path=None, nperseg=1024, noverlap=512, cmap='inferno', duration=10, max_frequency=6000):
+def generate_spectrogram_2(file_path, save_path=None, nperseg=1024, noverlap=512, cmap='inferno', duration=60, max_frequency=6000):
     sample_rate, audio_data = wav.read(file_path)
     
     max_samples = duration * sample_rate

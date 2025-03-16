@@ -2,7 +2,7 @@ from fourier import remove_band
 import librosa
 import soundfile as sf
 
-def encode_dabros(audio, sr, bits, golden=[1000,2000], silver=[2000,4000], bitlen=0.2):
+def encode_dabros(audio, sr, bits, golden=[1000,2000], silver=[2000,4000], bitlen=1):
     audio_length = len(audio) / sr
     if audio_length < 2 * len(bits) * bitlen:
         raise Exception("Data is too long.")

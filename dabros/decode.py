@@ -2,7 +2,7 @@ from fourier import extract_band
 import librosa
 import soundfile as sf
 
-def decode_dabros(audio, sr, golden=[1000,2000], silver=[2000,4000], bitlen=0.2):
+def decode_dabros(audio, sr, golden=[1000,2000], silver=[2000,4000], bitlen=1):
     template = bitlen / 3
     audio_length = len(audio) / sr
     final_pos = audio_length - template
