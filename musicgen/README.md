@@ -1,4 +1,4 @@
----this model is clearly not developed by julta knijka during the competition, we build on top of it---
+---this model is clearly not developed by julta knijka during the competition, we use it and build on top of it---
 
 # MusicGen Dreamboothing
 
