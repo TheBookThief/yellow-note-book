@@ -27,18 +27,22 @@ def make_polynom(coefficients):
     polynomial = " ".join(terms)
 
     return polynomial if polynomial else "0"
-def find_coefficients(bits, batch_size = 8):
+def find_coefficients(bits, batch_size = 5):
+    degree_bits = bits[:batch_size]
+    degree = int(''.join(map(str, degree_bits)), 2)
+    
     coefficients = []
     
-    for i in range(0, len(bits), batch_size):
+    for i in range(batch_size, len(bits), batch_size):
+        if len(coefficients) == degree:
+            break
         batch = bits[i:i+batch_size]
         binary_str = ''.join(map(str, batch)) 
         coefficients.append(int(binary_str, 2))
     
     return coefficients
 
-input_bits = [0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 
-0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0]
+input_bits = [0, 1, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0]
 coefficients = find_coefficients(input_bits)
 polynomial = make_polynom(coefficients)
 print(polynomial)
