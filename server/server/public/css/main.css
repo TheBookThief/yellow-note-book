@@ -76,7 +76,7 @@
 
 .logo {
     height: 50px;
-    margin-top: 10px;
+    margin-top: 30px;
 }
 
 .choose-panel {
@@ -92,6 +92,48 @@
     margin-bottom: 80px;
 }
 
+.file-upload-container {
+    text-align: center;
+    background: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    width: 300px;
+    border: 2px solid #333333;
+  }
+  
+  .file-input {
+    display: none;
+  }
+  
+  .custom-file-upload {
+    display: inline-block;
+    background-color: #ffcd00;
+    color: #333333;
+    padding: 12px 24px;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+    border: 2px solid #ffcd00;
+  }
+  
+  .custom-file-upload:hover {
+    background-color: #333333;
+    color: #ffcd00;
+  }
+  
+  .file-input:valid + .custom-file-upload + .file-name {
+    color: #333333;
+  }
+  
+  .file-name {
+    margin-top: 10px;
+    font-size: 14px;
+    color: #999;
+  }
+
 .choose-button {
     padding-top: 40px;
     padding-bottom: 40px;
@@ -103,14 +145,15 @@
     background-color: white;
     border: '5px solid #333333';
     margin-bottom: 80px;
-    margin-left: 40px;
+    margin-left: 20px;
+    margin-right: 20px;
     cursor: pointer;
 }
 
 .code-window {
     height: 100vh;
     color: #333333;
-    padding-top: 140px;
+    padding-top: 60px;
     font-family: 'Verdana';
     display: none;
 }
@@ -122,3 +165,55 @@
 #encode-output {
     display: none;
 }
+
+.text-input-container {
+    text-align: center;
+    background: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    width: 300px;
+    border: 2px solid #333333;
+  }
+  
+  .text-input {
+    width: 40%;
+    padding: 12px;
+    font-size: 16px;
+    border: 2px solid #333333;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    outline: none;
+  }
+  
+  .text-input:focus {
+    border-color: #ffcd00;
+    box-shadow: 0 0 5px rgba(255, 205, 0, 0.5);
+  }
+
+  a {
+    color: #ffcd00;
+  }
+
+#en-spectorgram{
+    max-height: 300px;
+}
+
+  .submit-custom {
+    display: inline-block;
+    background-color: #ffcd00;
+    color: #333333;
+    padding: 12px 24px;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+    border: 2px solid #ffcd00;
+  }
+  
+  .submit-custom:hover {
+    background-color: #333333;
+    color: #ffcd00;
+  }

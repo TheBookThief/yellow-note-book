@@ -13,9 +13,20 @@ document.getElementById('upload-form-encode').addEventListener('submit', functio
     xhr.onload = function() {
       if (xhr.status === 200) {
         let response = JSON.parse(xhr.responseText);
-        
+        if (response.success) {
+            let input = document.getElementById('encode-submit')
+            let output = document.getElementById('encode-output')
+            let link = document.getElementById('download-link-encoded')
+            let img = document.getElementById('en-spectorgram')
+            link.setAttribute('href', '/audio/' + response.name + "_audio_encoded.wav")
+            img.setAttribute('src', '/spect/' + response.name + ".png")
+            input.style.display = 'none'
+            output.style.display = 'block'
+        } else {
+            alert('Failed to encode polynomial.')
+        }
       } else {
-        
+        alert("Unknown error.")
       }
     };
 

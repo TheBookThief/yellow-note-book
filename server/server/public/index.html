@@ -26,7 +26,7 @@
       <div class='inner-title'>
           <h1 class='choose-title'>Choose Mode of Operation</h1>
           <button onclick='showEncode()' class='choose-button'>Encode</button>
-          <button class='choose-button'>Decode</button><br/>
+          <button onclick='showDecode()' class='choose-button'>Decode</button><br/>
           <label>The Fourier Transform is the mathematical tool that breaks down complex signals into simpler sine waves, which is key to technologies like audio compression.</label>
       </div>
     </div>
@@ -36,21 +36,32 @@
       See the DABROS encoding algorithm in action.
 
       <br/><br/><br/><br/>
-
+      <div id="encode-submit">
       <form id="upload-form-encode" enctype="multipart/form-data">
         <div class='code-step' align='center'>
           <h3>Step 1: Upload File (.wav)</h3><br/>
-          <input align='center' type="file" id="fileInput" required />
+          <div class="file-upload-container">
+            <input type="file" id="fileInput" class="file-input" />
+            <label for="fileInput" class="custom-file-upload">
+              <i class="fas fa-upload"></i> Upload File
+            </label>
+            <span id="file-name" class="file-name">No file selected</span>
+          </div>
+          <script>document.getElementById('fileInput').addEventListener('change', function(e) {
+            const fileName = e.target.files.length > 0 ? e.target.files[0].name : 'No file selected';
+            document.getElementById('file-name').textContent = fileName;
+          });</script>
         </div>
 
         <br/><br/>
 
         <div class='code-step' align='center'>
           <h3>Step 2: Enter a Polynomial</h3><br/>
-          <input class='input-text' id='polynomialInput' type='text' required /><br/>
-          <input type='submit' value="Submit" />
+          <input id='polynomialInput' type="text" id="textInput" class="text-input" placeholder="Enter polynomial..." /> <br/>
+          <input class="submit-custom" type='submit' value="Submit" />
         </div>
       </form>
+      </div>
 
       <script src='js/encode.js'></script>
 
@@ -58,10 +69,37 @@
 
       <div id='encode-output' class='code-step' align='center'>
           <h3>Encoded Output Music</h3>
-          <label>Download.</label><br/><br/>
-          <h4>Spectogram:</h4>
+          <a id="download-link-encoded" download>Download</a>.<br/><br/>
+          <br/>
+          <h4>Spectogram:</h4><br/>
           <img id='en-spectorgram'></img>
       </div>
-  </div>
+    </div>
+      
+      <div id='decode' class='code-window' align='center'>
+        <h1 class='code-title'>DECODE POLYNOMIAL</h1>
+        See the DABROS encoding algorithm in action.
+  
+        <br/><br/><br/><br/>
+  
+        <form id="upload-form-decode" enctype="multipart/form-data">
+          <div class='code-step' align='center'>
+            <h3>Upload File (.wav)</h3><br/>
+            <input align='center' type="file" id="fileInputDecode" required /><br/>
+            <input type='submit' value="Submit" />
+          </div>
+        </form>
+  
+        <script src='js/decode.js'></script>
+  
+        <br/><br/>
+  
+        <div id='decode-output' class='code-step' align='center'>
+            <h3>Decoded Output Polynomial</h3>
+            <label>?.</label><br/><br/>
+            <h4>Spectogram:</h4>
+            <img id='en-spectorgram'></img>
+        </div>
+    </div>
   </body>
 </html>
