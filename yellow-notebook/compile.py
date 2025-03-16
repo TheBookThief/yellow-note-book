@@ -44,8 +44,11 @@ def find_coefficients(polynom):
     result = [coefficients.get(exp, 0) for exp in range(max_exp, -1, -1)]
     return result
 
-def polynomial_to_binary(coefficients, bits=8):
+def polynomial_to_binary(coefficients, bits=5):
     binary_sequence = []
+
+    length_binary = format(len(coefficients), f'0{bits}b')
+    binary_sequence.extend([int(bit) for bit in length_binary])
     
     for coeff in coefficients:
         binary_coeff = format(coeff, f'0{bits}b')
@@ -98,7 +101,7 @@ def main():
     print(f"Polinomial: {pol}")
     print(f"Audio Path: {original_audio_path}")
     print(f"Coefficients: {find_coefficients(pol)}")
-    print(f"Binary: {polynomial_to_binary(find_coefficients(pol), bits=8)}")
+    print(f"Binary: {polynomial_to_binary(find_coefficients(pol), bits=5)}")
     
     y, sr = librosa.load(original_audio_path, sr=None)
 
@@ -113,7 +116,7 @@ def main():
     # output_path = original_audio_path.replace(".wav", "_encoded.wav")
     # output_path = "C:\\Users\\Maria Drencheva\\Desktop\\FMI\\Competitive\\Hackaton 25\\yellow-note-book\\yellow-notebook\\public\\audio\\audio_encoded.wav"
     
-    bits = polynomial_to_binary(find_coefficients(pol), bits=8)
+    bits = polynomial_to_binary(find_coefficients(pol), bits=5)
     
     processed_audio = encode_dabros(y, sr, bits)
     

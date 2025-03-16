@@ -34,11 +34,15 @@ def make_polynom(coefficients):
     polynomial = " ".join(terms)
 
     return polynomial if polynomial else "0"
-
-def find_coefficients(bits, batch_size = 8):
+def find_coefficients(bits, batch_size = 5):
+    degree_bits = bits[:batch_size]
+    degree = int(''.join(map(str, degree_bits)), 2)
+    
     coefficients = []
     
-    for i in range(0, len(bits), batch_size):
+    for i in range(batch_size, len(bits), batch_size):
+        if len(coefficients) == degree:
+            break
         batch = bits[i:i+batch_size]
         binary_str = ''.join(map(str, batch)) 
         coefficients.append(int(binary_str, 2))
@@ -94,7 +98,7 @@ def main():
     y, sr = librosa.load(encoded_audio_path, sr=None)
     binary = decode_dabros(y, sr)
     print(f"Binary: {binary}")
-    coeff = find_coefficients(binary, batch_size=8)
+    coeff = find_coefficients(binary, batch_size=5)
     print(f"Coefficients: {coeff}")
     poly = make_polynom(coeff)
     print(f"Polynomial: {poly}")
