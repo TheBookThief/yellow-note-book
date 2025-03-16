@@ -4,6 +4,7 @@ import librosa
 import soundfile as sf
 import numpy as np
 import os
+from draw_spectogram import generate_spectrogram_2
 
 def make_polynom(coefficients):
     terms = []
@@ -101,6 +102,13 @@ def main():
     coeff = find_coefficients(binary, batch_size=5)
     # print(f"Coefficients: {coeff}")
     poly = make_polynom(coeff)
+    
+
+    directory = r"\public\audio"
+    filename = os.path.basename(encoded_audio_path)
+    name, ext = os.path.splitext(filename)
+    generate_spectrogram_2(encoded_audio_path, "./public/spect/" + name + ".png")
+
     print(f"OK: {poly}")
 
 if __name__ == "__main__":
