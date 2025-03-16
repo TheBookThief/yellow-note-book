@@ -3,8 +3,9 @@ import re
 import librosa
 import soundfile as sf
 import numpy as np
+import os
 
-from draw_spectogram import generate_spectrogram
+from draw_spectogram import generate_spectrogram, generate_spectrogram_2
 
 def find_coefficients(polynom):
     polynom = polynom.replace(' ', '')
@@ -97,26 +98,29 @@ def main():
     print(f"Polinomial: {pol}")
     print(f"Audio Path: {original_audio_path}")
     print(f"Coefficients: {find_coefficients(pol)}")
-    print(f"Binary: {polynomial_to_binary(find_coefficients(pol), bits=3)}")
+    print(f"Binary: {polynomial_to_binary(find_coefficients(pol), bits=8)}")
     
-    # Load the audio file
     y, sr = librosa.load(original_audio_path, sr=None)
+
+
+
+    directory = r"\public\audio"
+    filename = os.path.basename(original_audio_path)
+    name, ext = os.path.splitext(filename)
+    new_filename = name + '_audio_encoded' + ext
+    output_path = "./public/audio/" + new_filename#os.path.join(directory, new_filename)
+
+    # output_path = original_audio_path.replace(".wav", "_encoded.wav")
+    # output_path = "C:\\Users\\Maria Drencheva\\Desktop\\FMI\\Competitive\\Hackaton 25\\yellow-note-book\\yellow-notebook\\public\\audio\\audio_encoded.wav"
     
-    # Define the output path (same folder, new filename)
-    output_path = original_audio_path.replace(".wav", "_encoded.wav")
-    
-    # Example bit sequence (modify as needed)
     bits = polynomial_to_binary(find_coefficients(pol), bits=8)
     
-    # Apply encoding
     processed_audio = encode_dabros(y, sr, bits)
     
-    # Save the processed audio
     sf.write(output_path, processed_audio, sr)
     print(f"Processed file saved as {output_path}")
 
-    generate_spectrogram(output_path, "molqqq_encoded.png")
-    generate_spectrogram(original_audio_path, "molqqq.png")
+    generate_spectrogram_2(output_path, "./public/spect/" + name + ".png")
 
 
 if __name__ == "__main__":
