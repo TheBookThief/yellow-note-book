@@ -23,9 +23,9 @@ def generate_spectrogram(audio_path, save_path=None):
     if save_path:
         plt.savefig(save_path)
     else:
-        print("Showing")
+        # print("Showing")
         plt.show(block=False)
-        print("Done")
+        # print("Done")
     
 if __name__ == "__main__":
     if len(sys.argv) < 2:
@@ -33,9 +33,9 @@ if __name__ == "__main__":
     else:
         audio_file = sys.argv[1]
         output_image = sys.argv[2] if len(sys.argv) > 2 else None
-        print("Generating spectogram now:")
+        # print("Generating spectogram now:")
         generate_spectrogram(audio_file, output_image)
-        print("Spectogram generated ----")
+        # print("Spectogram generated ----")
 
 
 def generate_spectrogram_2(file_path, save_path=None, nperseg=1024, noverlap=512, cmap='inferno', duration=60, max_frequency=6000):
@@ -67,4 +67,4 @@ def generate_spectrogram_2(file_path, save_path=None, nperseg=1024, noverlap=512
     if save_path:
         img_path = save_path if save_path.endswith('.png') else save_path + '.png'
         fig.savefig(img_path, format='png', bbox_inches='tight')  # Use bbox_inches='tight' to avoid clipping
-        print(f"Spectrogram saved as PNG at: {img_path}")
+        # print(f"Spectrogram saved as PNG at: {img_path}")

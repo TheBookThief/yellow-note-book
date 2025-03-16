@@ -98,10 +98,10 @@ def main():
     pol = sys.argv[1]
     original_audio_path = sys.argv[2]
     
-    print(f"Polinomial: {pol}")
-    print(f"Audio Path: {original_audio_path}")
-    print(f"Coefficients: {find_coefficients(pol)}")
-    print(f"Binary: {polynomial_to_binary(find_coefficients(pol), bits=5)}")
+    # print(f"Polinomial: {pol}")
+    # print(f"Audio Path: {original_audio_path}")
+    # print(f"Coefficients: {find_coefficients(pol)}")
+    # print(f"Binary: {polynomial_to_binary(find_coefficients(pol), bits=5)}")
     
     y, sr = librosa.load(original_audio_path, sr=None)
 
@@ -121,10 +121,10 @@ def main():
     processed_audio = encode_dabros(y, sr, bits)
     
     sf.write(output_path, processed_audio, sr)
-    print(f"Processed file saved as {output_path}")
+    # print(f"Processed file saved as {output_path}")
 
     generate_spectrogram_2(output_path, "./public/spect/" + name + ".png")
-
+    print("OK")
 
 if __name__ == "__main__":
     main()

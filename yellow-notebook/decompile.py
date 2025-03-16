@@ -94,14 +94,14 @@ def main():
     
     encoded_audio_path = sys.argv[1]
     
-    print(f"Encoded Path: {encoded_audio_path}")    
+    # print(f"Encoded Path: {encoded_audio_path}")    
     y, sr = librosa.load(encoded_audio_path, sr=None)
     binary = decode_dabros(y, sr)
-    print(f"Binary: {binary}")
+    # print(f"Binary: {binary}")
     coeff = find_coefficients(binary, batch_size=5)
-    print(f"Coefficients: {coeff}")
+    # print(f"Coefficients: {coeff}")
     poly = make_polynom(coeff)
-    print(f"Polynomial: {poly}")
+    print(f"OK: {poly}")
 
 if __name__ == "__main__":
     main()
