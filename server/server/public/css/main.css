@@ -1,0 +1,124 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.gradient-banner {
+    display: block;
+    height: 85vh;
+    width: 100%;
+    margin: 0;
+    background: linear-gradient(to bottom,#d7b700,rgb(250, 223, 73));
+}
+
+.inner-banner {
+    max-width: 900px;
+    margin-left: 30px;
+    margin-right: 30px;
+    padding-top: 100px;
+    position: relative;
+}
+
+.yellow-notebook-img {
+    transform: rotate(7.5deg);
+    filter: drop-shadow(5px 5px 4px #222222);
+    position: absolute;
+    float: right;
+    right: 0;
+}
+
+.big-title {
+    position: absolute;
+    float: left;
+    max-width: 700px;
+    padding-top: 60px;
+    font-family: 'Verdana';
+    color: white;
+    left: 0;
+    font-size: 32px;
+}
+
+.subtitle {
+    font-size: 20px;
+}
+
+.colored-text {
+   color: yellow; 
+}
+
+.try-button {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    padding-left: 32px;
+    padding-right: 32px;
+    font-size: 20px;
+    margin-top: 20px;
+    border-radius: 15px;
+    cursor: pointer;
+    border: 2px solid black;
+    outline: none;
+    background-color: #ffcd00;
+    font-weight: bold;
+}
+
+.title-container {
+    display: block;
+    height: 15vh;
+    width: 100%;
+    margin: 0;
+    background-color: #f5d602;
+    padding-top: 20;
+}
+
+.inner-title {
+    max-width: 900px;
+}
+
+.logo {
+    height: 50px;
+    margin-top: 10px;
+}
+
+.choose-panel {
+    height: 100vh;
+    color: #333333;
+    padding-top: 140px;
+    font-family: 'Verdana';
+    transition: opacity 0.5s ease, visibility 0s 0.5s;
+}
+
+.choose-title {
+    font-size: 40px;
+    margin-bottom: 80px;
+}
+
+.choose-button {
+    padding-top: 40px;
+    padding-bottom: 40px;
+    padding-left: 80px;
+    padding-right: 80px;
+    font-size: 35px;
+    color: #333333;
+    border-radius: 20px;
+    background-color: white;
+    border: '5px solid #333333';
+    margin-bottom: 80px;
+    margin-left: 40px;
+    cursor: pointer;
+}
+
+.code-window {
+    height: 100vh;
+    color: #333333;
+    padding-top: 140px;
+    font-family: 'Verdana';
+    display: none;
+}
+
+.code-step {
+    max-width: 900px;
+}
+
+#encode-output {
+    display: none;
+}

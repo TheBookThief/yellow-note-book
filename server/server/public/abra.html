@@ -1,0 +1,47 @@
+<!-- index.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>File Upload</title>
+</head>
+<body>
+  <h2>File Upload using AJAX</h2>
+  <form id="uploadForm" enctype="multipart/form-data">
+    <input type="file" name="file" id="fileInput" required />
+    <input type="text" name="polynomial" id="polynomialInput" requied />
+    <button type="submit">Upload File</button>
+  </form>
+
+  <div id="message"></div>
+
+  <script>
+    document.getElementById('uploadForm').addEventListener('submit', function(event) {
+      event.preventDefault(); // Prevent form submission
+
+      let formData = new FormData();
+      formData.append('file', document.getElementById('fileInput').files[0]);
+      formData.append('polynomial', document.getElementById('polynomialInput').value);
+
+      // Create AJAX request to send the file to the server
+      let xhr = new XMLHttpRequest();
+      xhr.open('POST', '/api/upload', true);
+
+      // Set up the callback to handle the server response
+      xhr.onload = function() {
+        if (xhr.status === 200) {
+          let response = JSON.parse(xhr.responseText);
+          document.getElementById('message').innerText = response.message;
+        } else {
+          document.getElementById('message').innerText = 'File upload failed!';
+        }
+      };
+
+      // Send the form data (which contains the file)
+      xhr.send(formData);
+    });
+  </script>
+</body>
+</html>

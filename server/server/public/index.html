@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/main.css">
+    <script src="js/main.js"></script>
+    <title>Yellow Notebook | Transforming Formulas to Frequencies</title>
+  </head>
+  <body>
+    <div class="gradient-banner" align='center'>
+        <div class="inner-banner" align='left'>
+            <img class="yellow-notebook-img" src='/images/yellow.png'></img>
+            <h2 class="big-title">FROM FORMULAS TO FREQUENCIES.<br/>
+                <label class="subtitle">The hidden power of <label class='colored-text'>MUSIC</label></label><br/>
+                <button class="try-button" onclick="tryit()">Try it</button>
+            </h2>
+        </div>
+    </div>
+
+    <div class='title-container' align='center'>
+      <div class="inner-title" align='left'><img class='logo' src='/images/logo2.png'></img></div>
+    </div>
+
+    <div id='panel' class='choose-panel' align='center'>
+      <div class='inner-title'>
+          <h1 class='choose-title'>Choose Mode of Operation</h1>
+          <button onclick='showEncode()' class='choose-button'>Encode</button>
+          <button class='choose-button'>Decode</button><br/>
+          <label>The Fourier Transform is the mathematical tool that breaks down complex signals into simpler sine waves, which is key to technologies like audio compression.</label>
+      </div>
+    </div>
+
+    <div id='encode' class='code-window' align='center'>
+      <h1 class='code-title'>ENCODE POLYNOMIAL</h1>
+      See the DABROS encoding algorithm in action.
+
+      <br/><br/><br/><br/>
+
+      <form id="upload-form-encode" enctype="multipart/form-data">
+        <div class='code-step' align='center'>
+          <h3>Step 1: Upload File (.wav)</h3><br/>
+          <input align='center' type="file" id="fileInput" required />
+        </div>
+
+        <br/><br/>
+
+        <div class='code-step' align='center'>
+          <h3>Step 2: Enter a Polynomial</h3><br/>
+          <input class='input-text' id='polynomialInput' type='text' required /><br/>
+          <input type='submit' value="Submit" />
+        </div>
+      </form>
+
+      <script src='js/encode.js'></script>
+
+      <br/><br/>
+
+      <div id='encode-output' class='code-step' align='center'>
+          <h3>Encoded Output Music</h3>
+          <label>Download.</label><br/><br/>
+          <h4>Spectogram:</h4>
+          <img id='en-spectorgram'></img>
+      </div>
+  </div>
+  </body>
+</html>
